@@ -23,6 +23,14 @@ void main() {
 
     expect(_board.toString(), _printBoardWithTetrominoT());
   });
+
+  test('When a tetromino is added to the board should fall one row per move', () {
+    _board.add(Tetromino.T);
+
+    _board.moveDown();
+
+    expect(_board.toString(), _printBoardWithTetrominoTMovedDownOnce());
+  });
 }
 
 String _printEmptyBoard() {
@@ -31,9 +39,15 @@ String _printEmptyBoard() {
 }
 
 String _printBoardWithTetrominoT() {
-  _stringBuffer.writeln('...TTT....');
-  _stringBuffer.writeln('....T.....');
+  _addTetrominoT();
   _fillBoardWithEmpty(ROWS - 2);
+  return _stringBuffer.toString();
+}
+
+String _printBoardWithTetrominoTMovedDownOnce() {
+  _fillBoardWithEmpty(1);
+  _addTetrominoT();
+  _fillBoardWithEmpty(ROWS - 3);
   return _stringBuffer.toString();
 }
 
@@ -44,4 +58,9 @@ void _fillBoardWithEmpty(int rows) {
     }
     _stringBuffer.writeln();
   }
+}
+
+void _addTetrominoT() {
+  _stringBuffer.writeln('...TTT....');
+  _stringBuffer.writeln('....T.....');
 }
