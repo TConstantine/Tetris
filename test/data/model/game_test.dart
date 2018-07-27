@@ -31,6 +31,12 @@ void main() {
 
     expect(_game.hasHoldingTetromino(), isFalse);
   });
+
+  test('Should start game with next-to-fall tetromino', () {
+    _game.start();
+
+    expect(_game.hasNextTetromino(), isTrue);
+  });
 }
 
 String _emptyBoard() {
