@@ -43,6 +43,12 @@ void main() {
 
     expect(_game.level(), 0);
   });
+
+  test('Should start game with 0 score', () {
+    _game.start();
+
+    expect(_game.score(), 0);
+  });
 }
 
 String _emptyBoard() {

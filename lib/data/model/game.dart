@@ -7,6 +7,7 @@ class Game {
   bool _hasHolding;
   bool _hasNext;
   int _level;
+  int _score = 0;
 
   void start() {
     _isPaused = true;
@@ -15,6 +16,7 @@ class Game {
     _hasHolding = false;
     _hasNext = true;
     _level = 0;
+    _score = 0;
   }
 
   bool isPaused() {
@@ -35,6 +37,10 @@ class Game {
 
   int level() {
     return _level;
+  }
+
+  int score() {
+    return _score;
   }
 
   @override
