@@ -1,18 +1,20 @@
 class Board {
+  static const String EMPTY = '.';
   final int _rows;
   final int _columns;
+  List<List<String>> _board;
 
-  Board(this._rows, this._columns);
+  Board(this._rows, this._columns) {
+    _board = List.generate(_rows, (_) => List.filled(_columns, EMPTY));
+  }
 
   @override
   String toString() {
     final StringBuffer stringBuffer = StringBuffer();
-    for (int row = 0; row < _rows; row++) {
-      for (int column = 0; column < _columns; column++) {
-        stringBuffer.write('.');
-      }
+    _board.forEach((row) {
+      row.forEach((cell) => stringBuffer.write(cell));
       stringBuffer.writeln();
-    }
+    });
     return stringBuffer.toString();
   }
 }
