@@ -49,6 +49,12 @@ void main() {
 
     expect(_game.score(), 0);
   });
+
+  test('Should start game with 0 completed lines', () {
+    _game.start();
+
+    expect(_game.lines(), 0);
+  });
 }
 
 String _emptyBoard() {

@@ -8,6 +8,7 @@ class Game {
   bool _hasNext;
   int _level;
   int _score = 0;
+  int _lines = 0;
 
   void start() {
     _isPaused = true;
@@ -17,6 +18,7 @@ class Game {
     _hasNext = true;
     _level = 0;
     _score = 0;
+    _lines = 0;
   }
 
   bool isPaused() {
@@ -41,6 +43,10 @@ class Game {
 
   int score() {
     return _score;
+  }
+
+  int lines() {
+    return _lines;
   }
 
   @override
