@@ -6,6 +6,7 @@ class Game {
   bool _hasFalling;
   bool _hasHolding;
   bool _hasNext;
+  int _level;
 
   void start() {
     _isPaused = true;
@@ -13,6 +14,7 @@ class Game {
     _hasFalling = false;
     _hasHolding = false;
     _hasNext = true;
+    _level = 0;
   }
 
   bool isPaused() {
@@ -29,6 +31,10 @@ class Game {
 
   bool hasNextTetromino() {
     return _hasNext;
+  }
+
+  int level() {
+    return _level;
   }
 
   @override

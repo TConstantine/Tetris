@@ -37,6 +37,12 @@ void main() {
 
     expect(_game.hasNextTetromino(), isTrue);
   });
+
+  test('Should start game at level 0', () {
+    _game.start();
+
+    expect(_game.level(), 0);
+  });
 }
 
 String _emptyBoard() {
