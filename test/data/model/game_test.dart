@@ -19,6 +19,12 @@ void main() {
 
     expect(_game.toString(), _emptyBoard());
   });
+
+  test('Should start game with no falling tetromino', () {
+    _game.start();
+
+    expect(_game.hasFallingTetromino(), isFalse);
+  });
 }
 
 String _emptyBoard() {
