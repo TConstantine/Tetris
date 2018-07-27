@@ -25,6 +25,12 @@ void main() {
 
     expect(_game.hasFallingTetromino(), isFalse);
   });
+
+  test('Should start game with no holding tetromino', () {
+    _game.start();
+
+    expect(_game.hasHoldingTetromino(), isFalse);
+  });
 }
 
 String _emptyBoard() {

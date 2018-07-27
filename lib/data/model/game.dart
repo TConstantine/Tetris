@@ -4,11 +4,13 @@ class Game {
   bool _isPaused;
   Board _board;
   bool _hasFalling;
+  bool _hasHolding;
 
   void start() {
     _isPaused = true;
     _board = Board(20, 10);
     _hasFalling = false;
+    _hasHolding = false;
   }
 
   bool isPaused() {
@@ -17,6 +19,10 @@ class Game {
 
   bool hasFallingTetromino() {
     return _hasFalling;
+  }
+
+  bool hasHoldingTetromino() {
+    return _hasHolding;
   }
 
   @override
