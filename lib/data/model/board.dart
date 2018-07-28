@@ -26,9 +26,15 @@ class Board {
   }
 
   void moveDown() {
-    _displayCurrentTetromino(false);
-    _currentTetrominoRow++;
-    _displayCurrentTetromino(true);
+    if (!_isTetrominoAtBottom()) {
+      _displayCurrentTetromino(false);
+      _currentTetrominoRow++;
+      _displayCurrentTetromino(true);
+    }
+  }
+
+  bool _isTetrominoAtBottom() {
+    return _currentTetrominoRow + _currentTetrominoRows == _rows;
   }
 
   void _displayCurrentTetromino(bool isVisible) {

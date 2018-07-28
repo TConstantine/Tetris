@@ -31,6 +31,16 @@ void main() {
 
     expect(_board.toString(), _printBoardWithTetrominoTMovedDownOnce());
   });
+
+  test('Given a tetromino is added to the board when it reaches the bottom should stop falling', () {
+    _board.add(Tetromino.T);
+
+    for (int row = 0; row < ROWS; row++) {
+      _board.moveDown();
+    }
+
+    expect(_board.toString(), _printBoardWithTetrominoTAtTheBottom());
+  });
 }
 
 String _printEmptyBoard() {
@@ -48,6 +58,12 @@ String _printBoardWithTetrominoTMovedDownOnce() {
   _fillBoardWithEmpty(1);
   _addTetrominoT();
   _fillBoardWithEmpty(ROWS - 3);
+  return _stringBuffer.toString();
+}
+
+String _printBoardWithTetrominoTAtTheBottom() {
+  _fillBoardWithEmpty(ROWS - 2);
+  _addTetrominoT();
   return _stringBuffer.toString();
 }
 
