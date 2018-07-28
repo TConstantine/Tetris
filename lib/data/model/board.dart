@@ -26,7 +26,7 @@ class Board {
   }
 
   void moveDown() {
-    if (!_isTetrominoAtBottom()) {
+    if (!_isTetrominoAtBottom() && !_hasCollidedWithAnotherTetromino()) {
       _displayCurrentTetromino(false);
       _currentTetrominoRow++;
       _displayCurrentTetromino(true);
@@ -35,6 +35,25 @@ class Board {
 
   bool _isTetrominoAtBottom() {
     return _currentTetrominoRow + _currentTetrominoRows == _rows;
+  }
+
+  bool _hasCollidedWithAnotherTetromino() {
+    for (int column = 0; column < _currentTetrominoColumns; column++) {
+      final bool isTetrominoBlockEmpty =
+          _currentTetromino.isEmptyAt(_currentTetrominoRows - 1, column);
+      final int currentBoardColumn = _currentTetrominoColumn + column;
+      if ((!isTetrominoBlockEmpty &&
+              !_isEmptyAt(_currentTetrominoRow + _currentTetrominoRows, currentBoardColumn)) ||
+          (isTetrominoBlockEmpty &&
+              !_isEmptyAt(_currentTetrominoRow + _currentTetrominoRows - 1, currentBoardColumn))) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool _isEmptyAt(int row, int column) {
+    return _board[row][column] == _EMPTY;
   }
 
   void _displayCurrentTetromino(bool isVisible) {
