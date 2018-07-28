@@ -1,10 +1,10 @@
+import 'package:tetris/data/model/block.dart';
 import 'package:tetris/data/model/tetromino.dart';
 
 class Board {
-  static const String _EMPTY = '.';
   final int _rows;
   final int _columns;
-  List<List<String>> _board;
+  List<List<Block>> _board;
   Tetromino _currentTetromino;
   int _currentTetrominoRows;
   int _currentTetrominoColumns;
@@ -12,7 +12,7 @@ class Board {
   int _currentTetrominoColumn;
 
   Board(this._rows, this._columns) {
-    _board = List.generate(_rows, (_) => List.filled(_columns, _EMPTY));
+    _board = List.generate(_rows, (_) => List.filled(_columns, Block(Block.EMPTY)));
   }
 
   void add(Tetromino tetromino) {
@@ -53,16 +53,16 @@ class Board {
   }
 
   bool _isEmptyAt(int row, int column) {
-    return _board[row][column] == _EMPTY;
+    return _board[row][column].isEmpty();
   }
 
   void _displayCurrentTetromino(bool isVisible) {
     for (int row = 0; row < _currentTetrominoRows; row++) {
       for (int column = 0; column < _currentTetrominoColumns; column++) {
-        final String currentBlock = _currentTetromino.blockAt(row, column);
-        if (currentBlock != _EMPTY) {
+        final String currentBlock = _currentTetromino.valueAt(row, column);
+        if (currentBlock != Block.EMPTY) {
           _board[_currentTetrominoRow + row][_currentTetrominoColumn + column] =
-              isVisible ? currentBlock : _EMPTY;
+              isVisible ? Block(currentBlock) : Block(Block.EMPTY);
         }
       }
     }
@@ -72,7 +72,7 @@ class Board {
   String toString() {
     final StringBuffer stringBuffer = StringBuffer();
     _board.forEach((row) {
-      row.forEach((cell) => stringBuffer.write(cell));
+      row.forEach((block) => stringBuffer.write(block.value()));
       stringBuffer.writeln();
     });
     return stringBuffer.toString();

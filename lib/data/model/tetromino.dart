@@ -1,23 +1,29 @@
-class Tetromino {
-  static const Tetromino T = Tetromino(['TTT', '.T.']);
-  static const String _EMPTY = '.';
-  final List<String> _shape;
+import 'package:tetris/data/model/block.dart';
 
-  const Tetromino(this._shape);
+class Tetromino {
+  static final Tetromino T = Tetromino(['TTT', '.T.']);
+  List<List<Block>> _blocks;
+
+  Tetromino(List<String> shape) {
+    _blocks = List.generate(
+        shape.length,
+        (row) => List.generate(
+            shape[row].length, (column) => Block(shape[row].substring(column, column + 1))));
+  }
 
   int rows() {
-    return _shape.length;
+    return _blocks.length;
   }
 
   int columns() {
-    return _shape[0].length;
+    return _blocks[0].length;
+  }
+
+  String valueAt(int row, int column) {
+    return _blocks[row][column].value();
   }
 
   bool isEmptyAt(int row, int column) {
-    return blockAt(row, column) == _EMPTY;
-  }
-
-  String blockAt(int row, int column) {
-    return _shape[row].substring(column, column + 1);
+    return _blocks[row][column].isEmpty();
   }
 }
