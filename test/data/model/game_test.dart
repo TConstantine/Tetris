@@ -1,5 +1,6 @@
 import 'package:test/test.dart';
 import 'package:tetris/data/model/game.dart';
+import 'package:tetris/data/model/tetromino.dart';
 
 void main() {
   Game _game;
@@ -8,52 +9,28 @@ void main() {
     _game = Game();
   });
 
-  test('Should start game in paused state', () {
+  test('Should start game', () {
     _game.start();
 
     expect(_game.isPaused(), isTrue);
-  });
-
-  test('Should start game with an empty board', () {
-    _game.start();
-
     expect(_game.toString(), _emptyBoard());
-  });
-
-  test('Should start game with no falling tetromino', () {
-    _game.start();
-
     expect(_game.hasFallingTetromino(), isFalse);
-  });
-
-  test('Should start game with no holding tetromino', () {
-    _game.start();
-
     expect(_game.hasHoldingTetromino(), isFalse);
-  });
-
-  test('Should start game with next-to-fall tetromino', () {
-    _game.start();
-
     expect(_game.hasNextTetromino(), isTrue);
-  });
-
-  test('Should start game at level 0', () {
-    _game.start();
-
     expect(_game.level(), 0);
-  });
-
-  test('Should start game with 0 score', () {
-    _game.start();
-
     expect(_game.score(), 0);
+    expect(_game.lines(), 0);
   });
 
-  test('Should start game with 0 completed lines', () {
+  test('Should resume game', () {
     _game.start();
+    final Tetromino nextTetromino = _game.nextTetromino();
 
-    expect(_game.lines(), 0);
+    _game.resume();
+
+    expect(_game.isPaused(), isFalse);
+    expect(_game.hasFallingTetromino(), isTrue);
+    expect(_game.fallingTetromino(), nextTetromino);
   });
 }
 
