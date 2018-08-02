@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:tetris/data/model/board.dart';
 import 'package:tetris/data/model/tetromino.dart';
+import 'package:tetris/ui/model/block_view_model.dart';
 
 class Game {
   bool _isPaused;
@@ -40,8 +42,19 @@ class Game {
     return _hasFalling;
   }
 
-  Tetromino fallingTetromino() {
-    return _fallingTetromino;
+  List<List<BlockViewModel>> fallingTetromino() {
+    return [
+      [
+        BlockViewModel(false, Colors.red),
+        BlockViewModel(false, Colors.red),
+        BlockViewModel(false, Colors.red)
+      ],
+      [
+        BlockViewModel(true, Colors.red),
+        BlockViewModel(false, Colors.red),
+        BlockViewModel(true, Colors.red)
+      ]
+    ];
   }
 
   bool hasHoldingTetromino() {
@@ -52,8 +65,19 @@ class Game {
     return _hasNext;
   }
 
-  Tetromino nextTetromino() {
-    return _nextTetromino;
+  List<List<BlockViewModel>> nextTetromino() {
+    return [
+      [
+        BlockViewModel(false, Colors.red),
+        BlockViewModel(false, Colors.red),
+        BlockViewModel(false, Colors.red)
+      ],
+      [
+        BlockViewModel(true, Colors.red),
+        BlockViewModel(false, Colors.red),
+        BlockViewModel(true, Colors.red)
+      ]
+    ];
   }
 
   int level() {

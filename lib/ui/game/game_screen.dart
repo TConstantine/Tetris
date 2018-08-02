@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:tetris/data/model/game.dart';
+import 'package:tetris/ui/game/game_contract.dart';
+import 'package:tetris/ui/game/game_presenter.dart';
 
 class GameScreen extends StatelessWidget {
   final Game _game = Game();
+  GameContractPresenter _presenter;
 
   @override
   Widget build(BuildContext context) {
     _game.start();
+    _presenter = GamePresenter(_game);
     final Size size = MediaQuery.of(context).size;
     final double screenWidth = size.width;
     final double screenHeight = size.height;
@@ -76,7 +80,7 @@ class GameScreen extends StatelessWidget {
       width: width,
       height: height,
       child: CustomPaint(
-        painter: NextTetrominoPainter(),
+        painter: _presenter.nextTetrominoRenderer(),
       ),
       decoration: BoxDecoration(
         border: Border.all(),
@@ -134,38 +138,5 @@ class GameScreen extends StatelessWidget {
       width: width,
       height: height,
     );
-  }
-}
-
-class NextTetrominoPainter extends CustomPainter {
-  final List<List<String>> _tetrominoT = [
-    ['T', 'T', 'T'],
-    ['.', 'T', '.']
-  ];
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final double sizeWidth = size.width / 4;
-    for (int row = 0; row < _tetrominoT.length; row++) {
-      for (int column = 0; column < _tetrominoT[row].length; column++) {
-        final String charAt = _tetrominoT[row][column];
-        if (charAt != '.') {
-          canvas.drawRect(
-            Rect.fromLTWH(column * sizeWidth, row * sizeWidth, sizeWidth, sizeWidth),
-            Paint()..color = Colors.black,
-          );
-          canvas.drawRect(
-            Rect.fromLTWH(
-                column * sizeWidth + 1, row * sizeWidth + 1, sizeWidth - 2, sizeWidth - 2),
-            Paint()..color = Colors.grey,
-          );
-        }
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
   }
 }

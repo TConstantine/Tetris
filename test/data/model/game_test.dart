@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 import 'package:tetris/data/model/game.dart';
-import 'package:tetris/data/model/tetromino.dart';
+import 'package:tetris/ui/model/block_view_model.dart';
 
 void main() {
   Game _game;
@@ -24,7 +24,7 @@ void main() {
 
   test('Should resume game', () {
     _game.start();
-    final Tetromino nextTetromino = _game.nextTetromino();
+    final List<List<BlockViewModel>> nextTetromino = _game.nextTetromino();
 
     _game.resume();
 
