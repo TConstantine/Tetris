@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tetris/data/model/game.dart';
 import 'package:tetris/ui/game/game_contract.dart';
-import 'package:tetris/ui/game/game_presenter.dart';
 
 class GameScreen extends StatelessWidget {
-  final Game _game = Game();
-  GameContractPresenter _presenter;
+  final GameContractPresenter _presenter;
+
+  GameScreen(this._presenter);
 
   @override
   Widget build(BuildContext context) {
-    _game.start();
-    _presenter = GamePresenter(_game);
     final Size size = MediaQuery.of(context).size;
     final double screenWidth = size.width;
     final double screenHeight = size.height;
@@ -67,9 +64,9 @@ class GameScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Level: ${_game.level()}'),
-          Text('Score: ${_game.score()}'),
-          Text('Lines: ${_game.lines()}'),
+          Text('Level: 0'),
+          Text('Score: 0'),
+          Text('Lines: 0'),
         ],
       ),
     );
