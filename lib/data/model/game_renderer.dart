@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:tetris/ui/model/block_view_model.dart';
 
 class GameRenderer extends CustomPainter {
-  final List<List<BlockViewModel>> _blocks;
+  List<List<BlockViewModel>> _drawable;
 
-  GameRenderer(this._blocks);
+  void setDrawable(List<List<BlockViewModel>> drawable) {
+    _drawable = drawable;
+  }
 
   @override
   void paint(Canvas canvas, Size size) {
-    final int rows = _blocks.length;
-    final int columns = _blocks[0].length;
+    final int rows = _drawable.length;
+    final int columns = _drawable[0].length;
     final double sizeWidth = size.width / columns;
     for (int row = 0; row < rows; row++) {
       for (int column = 0; column < columns; column++) {
-        if (!_blocks[row][column].isEmpty()) {
+        if (!_drawable[row][column].isEmpty()) {
           canvas.drawRect(
             Rect.fromLTWH(column * sizeWidth, row * sizeWidth, sizeWidth, sizeWidth),
             Paint()..color = Colors.black,
@@ -21,7 +23,7 @@ class GameRenderer extends CustomPainter {
           canvas.drawRect(
             Rect.fromLTWH(
                 column * sizeWidth + 1, row * sizeWidth + 1, sizeWidth - 2, sizeWidth - 2),
-            Paint()..color = _blocks[row][column].color(),
+            Paint()..color = _drawable[row][column].color(),
           );
         }
       }

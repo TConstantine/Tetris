@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+abstract class GameContractView {
+  void renderNextTetromino(CustomPainter drawable);
+}
+
 abstract class GameContractPresenter {
-  CustomPainter nextTetrominoRenderer();
+  void startNewGame();
 }

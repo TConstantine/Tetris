@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:tetris/di/injector.dart';
 import 'package:tetris/ui/game/game_contract.dart';
 
-class GameScreen extends StatelessWidget {
-  final GameContractPresenter _presenter;
+class GameScreen extends StatefulWidget {
+  @override
+  _GameScreenState createState() => _GameScreenState();
+}
 
-  GameScreen(this._presenter);
+class _GameScreenState extends State<GameScreen> implements GameContractView {
+  GameContractPresenter _presenter;
+  CustomPainter _nextTetrominoDrawable;
+
+  @override
+  void initState() {
+    super.initState();
+    _presenter = Injector().gamePresenter(this);
+    _presenter.startNewGame();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +89,7 @@ class GameScreen extends StatelessWidget {
       width: width,
       height: height,
       child: CustomPaint(
-        painter: _presenter.nextTetrominoRenderer(),
+        painter: _nextTetrominoDrawable,
       ),
       decoration: BoxDecoration(
         border: Border.all(),
@@ -135,5 +147,12 @@ class GameScreen extends StatelessWidget {
       width: width,
       height: height,
     );
+  }
+
+  @override
+  void renderNextTetromino(CustomPainter drawable) {
+    setState(() {
+      _nextTetrominoDrawable = drawable;
+    });
   }
 }

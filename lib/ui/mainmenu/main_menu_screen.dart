@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tetris/di/injector.dart';
 import 'package:tetris/ui/game/game_screen.dart';
 
 class MainMenuScreen extends StatelessWidget {
@@ -17,7 +16,7 @@ class MainMenuScreen extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => GameScreen(Injector().gamePresenter)),
+              MaterialPageRoute(builder: (context) => GameScreen()),
             );
           },
         ),
