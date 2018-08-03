@@ -1,5 +1,6 @@
 import 'package:tetris/data/model/game.dart';
 import 'package:tetris/data/model/game_renderer.dart';
+import 'package:tetris/domain/converters/tetromino_converter.dart';
 import 'package:tetris/ui/game/game_contract.dart';
 import 'package:tetris/ui/game/game_presenter.dart';
 
@@ -13,7 +14,11 @@ class Injector {
   }
 
   GameContractPresenter gamePresenter(GameContractView view) {
-    return GamePresenter(view, _provideGame(), _provideRenderer());
+    return GamePresenter(view, _provideTetrominoConverter(), _provideGame(), _provideRenderer());
+  }
+
+  TetrominoConverter _provideTetrominoConverter() {
+    return TetrominoConverter();
   }
 
   Game _provideGame() {
