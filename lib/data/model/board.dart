@@ -15,6 +15,18 @@ class Board {
     _board = List.generate(_rows, (_) => List.filled(_columns, Block(Block.EMPTY)));
   }
 
+  int rows() {
+    return _rows;
+  }
+
+  int columns() {
+    return _columns;
+  }
+
+  bool isEmptyAt(int row, int column) {
+    return _board[row][column].isEmpty();
+  }
+
   void add(Tetromino tetromino) {
     _currentTetromino = tetromino;
     _currentTetrominoRows = tetromino.rows();
@@ -43,17 +55,13 @@ class Board {
           _currentTetromino.isEmptyAt(_currentTetrominoRows - 1, column);
       final int currentBoardColumn = _currentTetrominoColumn + column;
       if ((!isTetrominoBlockEmpty &&
-              !_isEmptyAt(_currentTetrominoRow + _currentTetrominoRows, currentBoardColumn)) ||
+              !isEmptyAt(_currentTetrominoRow + _currentTetrominoRows, currentBoardColumn)) ||
           (isTetrominoBlockEmpty &&
-              !_isEmptyAt(_currentTetrominoRow + _currentTetrominoRows - 1, currentBoardColumn))) {
+              !isEmptyAt(_currentTetrominoRow + _currentTetrominoRows - 1, currentBoardColumn))) {
         return true;
       }
     }
     return false;
-  }
-
-  bool _isEmptyAt(int row, int column) {
-    return _board[row][column].isEmpty();
   }
 
   void _displayCurrentTetromino(bool isVisible) {

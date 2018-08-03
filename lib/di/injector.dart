@@ -1,4 +1,6 @@
 import 'package:tetris/data/model/game.dart';
+import 'package:tetris/domain/converters/board_converter.dart';
+import 'package:tetris/domain/usecases/get_board.dart';
 import 'package:tetris/ui/game/game_renderer.dart';
 import 'package:tetris/domain/converters/tetromino_converter.dart';
 import 'package:tetris/domain/usecases/get_next_tetromino.dart';
@@ -16,7 +18,12 @@ class Injector {
   }
 
   GameContractPresenter gamePresenter(GameContractView view) {
-    return GamePresenter(view, _provideStartGameUseCase(), _provideNextTetrominoUseCase());
+    return GamePresenter(
+      view,
+      _provideStartGameUseCase(),
+      _provideGetBoardUseCase(),
+      _provideNextTetrominoUseCase(),
+    );
   }
 
   GameRenderer gameRenderer() {
@@ -27,8 +34,16 @@ class Injector {
     return StartGame(_provideGame());
   }
 
+  GetBoard _provideGetBoardUseCase() {
+    return GetBoard(_provideGame(), _provideBoardConverter());
+  }
+
   GetNextTetromino _provideNextTetrominoUseCase() {
     return GetNextTetromino(_provideGame(), _provideTetrominoConverter());
+  }
+
+  BoardConverter _provideBoardConverter() {
+    return BoardConverter();
   }
 
   TetrominoConverter _provideTetrominoConverter() {

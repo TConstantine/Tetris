@@ -1,7 +1,8 @@
-import 'package:tetris/ui/model/tetromino_view_model.dart';
+import 'package:tetris/ui/model/drawable_grid.dart';
 
 abstract class GameContractView {
-  void renderNextTetromino(TetrominoViewModel tetrominoViewModel);
+  void renderBoard(DrawableGrid boardViewModel);
+  void renderNextTetromino(DrawableGrid tetrominoViewModel);
 }
 
 abstract class GameContractPresenter {

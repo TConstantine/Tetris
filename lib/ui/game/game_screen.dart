@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tetris/ui/game/game_renderer.dart';
 import 'package:tetris/di/injector.dart';
 import 'package:tetris/ui/game/game_contract.dart';
-import 'package:tetris/ui/model/tetromino_view_model.dart';
+import 'package:tetris/ui/model/drawable_grid.dart';
 
 class GameScreen extends StatefulWidget {
   @override
@@ -153,7 +153,14 @@ class _GameScreenState extends State<GameScreen> implements GameContractView {
   }
 
   @override
-  void renderNextTetromino(TetrominoViewModel tetrominoViewModel) {
+  void renderBoard(DrawableGrid boardViewModel) {
+    setState(() {
+      _gameRenderer.setDrawable(boardViewModel);
+    });
+  }
+
+  @override
+  void renderNextTetromino(DrawableGrid tetrominoViewModel) {
     setState(() {
       _gameRenderer.setDrawable(tetrominoViewModel);
     });

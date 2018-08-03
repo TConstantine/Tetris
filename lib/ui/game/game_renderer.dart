@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tetris/ui/model/tetromino_view_model.dart';
+import 'package:tetris/ui/model/drawable_grid.dart';
 
 class GameRenderer extends CustomPainter {
-  TetrominoViewModel _drawable;
+  DrawableGrid _drawable;
 
-  void setDrawable(TetrominoViewModel drawable) {
+  void setDrawable(DrawableGrid drawable) {
     _drawable = drawable;
   }
 

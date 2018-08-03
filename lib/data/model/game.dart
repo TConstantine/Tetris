@@ -44,6 +44,10 @@ class Game {
     return _isPaused;
   }
 
+  Board board() {
+    return _board;
+  }
+
   bool hasFallingTetromino() {
     return _hasFalling;
   }
