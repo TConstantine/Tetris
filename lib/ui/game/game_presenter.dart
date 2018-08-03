@@ -1,20 +1,17 @@
-import 'package:tetris/data/model/game.dart';
-import 'package:tetris/data/model/game_renderer.dart';
-import 'package:tetris/domain/converters/tetromino_converter.dart';
+import 'package:tetris/domain/usecases/get_next_tetromino.dart';
+import 'package:tetris/domain/usecases/start_game.dart';
 import 'package:tetris/ui/game/game_contract.dart';
 
 class GamePresenter implements GameContractPresenter {
   final GameContractView _view;
-  final TetrominoConverter _converter;
-  final Game _game;
-  final GameRenderer _renderer;
+  final StartGame _startGameUseCase;
+  final GetNextTetromino _getNextTetrominoUseCase;
 
-  GamePresenter(this._view, this._converter, this._game, this._renderer);
+  GamePresenter(this._view, this._startGameUseCase, this._getNextTetrominoUseCase);
 
   @override
   void startNewGame() {
-    _game.start();
-    _renderer.setDrawable(_converter.convertToViewModel(_game.nextTetromino()));
-    _view.renderNextTetromino(_renderer);
+    _startGameUseCase.execute();
+    _view.renderNextTetromino(_getNextTetrominoUseCase.execute());
   }
 }

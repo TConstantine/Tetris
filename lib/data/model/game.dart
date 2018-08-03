@@ -2,6 +2,14 @@ import 'package:tetris/data/model/board.dart';
 import 'package:tetris/data/model/tetromino.dart';
 
 class Game {
+  static final Game _instance = new Game._internal();
+
+  Game._internal();
+
+  factory Game() {
+    return _instance;
+  }
+
   bool _isPaused;
   Board _board;
   bool _hasFalling;
