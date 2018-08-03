@@ -4,7 +4,7 @@ import 'package:tetris/data/model/board.dart';
 import 'package:tetris/data/model/game.dart';
 import 'package:tetris/domain/converters/board_converter.dart';
 import 'package:tetris/domain/usecases/get_board.dart';
-import 'package:tetris/ui/model/board_view_model.dart';
+import 'package:tetris/ui/model/drawable_grid.dart';
 
 class GameMock extends Mock implements Game {}
 
@@ -24,11 +24,11 @@ void main() {
   test('Get the board', () {
     final Board board = Board(0, 0);
     when(_game.board()).thenReturn(board);
-    final BoardViewModel boardViewModel = BoardViewModel([]);
-    when(_boardConverter.convertToViewModel(board)).thenReturn(boardViewModel);
+    final DrawableGrid drawableGrid = DrawableGrid([]);
+    when(_boardConverter.convertToViewModel(board)).thenReturn(drawableGrid);
 
-    final BoardViewModel actual = _useCase.execute();
+    final DrawableGrid actual = _useCase.execute();
 
-    expect(actual, boardViewModel);
+    expect(actual, drawableGrid);
   });
 }

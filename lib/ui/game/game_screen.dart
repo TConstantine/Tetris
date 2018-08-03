@@ -11,7 +11,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> implements GameContractView {
   GameContractPresenter _presenter;
-  GameRenderer _gameRenderer;
+  GridRenderer _gameRenderer;
 
   @override
   void initState() {

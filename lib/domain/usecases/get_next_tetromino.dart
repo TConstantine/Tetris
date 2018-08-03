@@ -1,6 +1,6 @@
 import 'package:tetris/data/model/game.dart';
 import 'package:tetris/domain/converters/tetromino_converter.dart';
-import 'package:tetris/ui/model/tetromino_view_model.dart';
+import 'package:tetris/ui/model/drawable_grid.dart';
 
 class GetNextTetromino {
   final Game _game;
@@ -8,7 +8,7 @@ class GetNextTetromino {
 
   GetNextTetromino(this._game, this._converter);
 
-  TetrominoViewModel execute() {
+  DrawableGrid execute() {
     return _converter.convertToViewModel(_game.nextTetromino());
   }
 }

@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:tetris/ui/model/drawable_grid.dart';
 
-class GameRenderer extends CustomPainter {
-  DrawableGrid _drawable;
+class GridRenderer extends CustomPainter {
+  DrawableGrid _grid;
 
-  void setDrawable(DrawableGrid drawable) {
-    _drawable = drawable;
+  void setDrawable(DrawableGrid grid) {
+    _grid = grid;
   }
 
   @override
   void paint(Canvas canvas, Size size) {
-    final int rows = _drawable.rows();
-    final int columns = _drawable.columns();
-    final double sizeWidth = size.width / columns;
+    final int rows = _grid.rows();
+    final int columns = _grid.columns();
+    final double cellSize = size.width / columns;
     for (int row = 0; row < rows; row++) {
       for (int column = 0; column < columns; column++) {
-        if (!_drawable.isEmptyAt(row, column)) {
+        if (_grid.isVisibleAt(row, column)) {
           canvas.drawRect(
-            Rect.fromLTWH(column * sizeWidth, row * sizeWidth, sizeWidth, sizeWidth),
+            Rect.fromLTWH(column * cellSize, row * cellSize, cellSize, cellSize),
             Paint()..color = Colors.black,
           );
           canvas.drawRect(
-            Rect.fromLTWH(
-                column * sizeWidth + 1, row * sizeWidth + 1, sizeWidth - 2, sizeWidth - 2),
-            Paint()..color = _drawable.colorAt(row, column),
+            Rect.fromLTWH(column * cellSize + 1, row * cellSize + 1, cellSize - 2, cellSize - 2),
+            Paint()..color = _grid.colorAt(row, column),
           );
         }
       }

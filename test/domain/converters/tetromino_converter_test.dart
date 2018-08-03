@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
 import 'package:tetris/data/model/tetromino.dart';
 import 'package:tetris/domain/converters/tetromino_converter.dart';
-import 'package:tetris/ui/model/tetromino_view_model.dart';
+import 'package:tetris/ui/model/drawable_grid.dart';
 
 void main() {
   TetrominoConverter _converter;
@@ -14,9 +14,9 @@ void main() {
     final List<String> shape = ['TTT', '.T.'];
     final Tetromino tetromino = Tetromino(shape);
 
-    final TetrominoViewModel tetrominoViewModel = _converter.convertToViewModel(tetromino);
+    final DrawableGrid drawableGrid = _converter.convertToViewModel(tetromino);
 
-    expect(tetrominoViewModel.rows(), 2);
-    expect(tetrominoViewModel.columns(), 3);
+    expect(drawableGrid.rows(), 2);
+    expect(drawableGrid.columns(), 3);
   });
 }

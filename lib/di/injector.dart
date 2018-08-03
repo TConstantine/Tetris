@@ -26,8 +26,8 @@ class Injector {
     );
   }
 
-  GameRenderer gameRenderer() {
-    return GameRenderer();
+  GridRenderer gameRenderer() {
+    return GridRenderer();
   }
 
   StartGame _provideStartGameUseCase() {

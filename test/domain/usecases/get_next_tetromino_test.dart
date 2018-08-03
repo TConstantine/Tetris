@@ -4,9 +4,10 @@ import 'package:tetris/data/model/game.dart';
 import 'package:tetris/data/model/tetromino.dart';
 import 'package:tetris/domain/converters/tetromino_converter.dart';
 import 'package:tetris/domain/usecases/get_next_tetromino.dart';
-import 'package:tetris/ui/model/tetromino_view_model.dart';
+import 'package:tetris/ui/model/drawable_grid.dart';
 
 class GameMock extends Mock implements Game {}
+
 class TetrominoConverterMock extends Mock implements TetrominoConverter {}
 
 void main() {
@@ -23,8 +24,8 @@ void main() {
   test('Get next tetromino', () {
     final Tetromino tetromino = Tetromino([]);
     when(_game.nextTetromino()).thenReturn(tetromino);
-    final TetrominoViewModel tetrominoViewModel = TetrominoViewModel([]);
-    when(_converter.convertToViewModel(tetromino)).thenReturn(tetrominoViewModel);
+    final DrawableGrid drawableGrid = DrawableGrid([]);
+    when(_converter.convertToViewModel(tetromino)).thenReturn(drawableGrid);
 
     _useCase.execute();
 

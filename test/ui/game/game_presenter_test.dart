@@ -5,8 +5,7 @@ import 'package:tetris/domain/usecases/get_next_tetromino.dart';
 import 'package:tetris/domain/usecases/start_game.dart';
 import 'package:tetris/ui/game/game_contract.dart';
 import 'package:tetris/ui/game/game_presenter.dart';
-import 'package:tetris/ui/model/board_view_model.dart';
-import 'package:tetris/ui/model/tetromino_view_model.dart';
+import 'package:tetris/ui/model/drawable_grid.dart';
 
 class GameViewMock extends Mock implements GameContractView {}
 
@@ -37,26 +36,26 @@ void main() {
   });
 
   test('Display board', () {
-    final BoardViewModel boardViewModel = BoardViewModel([]);
-    when(_getBoardUseCase.execute()).thenReturn(boardViewModel);
+    final DrawableGrid drawableGrid = DrawableGrid([]);
+    when(_getBoardUseCase.execute()).thenReturn(drawableGrid);
 
     _presenter.startNewGame();
 
     verifyInOrder([
       _startGameUseCase.execute(),
-      _view.renderBoard(boardViewModel),
+      _view.renderBoard(drawableGrid),
     ]);
   });
 
   test('Display next tetromino', () {
-    final TetrominoViewModel tetrominoViewModel = TetrominoViewModel([]);
-    when(_getNextTetrominoUseCase.execute()).thenReturn(tetrominoViewModel);
+    final DrawableGrid drawableGrid = DrawableGrid([]);
+    when(_getNextTetrominoUseCase.execute()).thenReturn(drawableGrid);
 
     _presenter.startNewGame();
 
     verifyInOrder([
       _startGameUseCase.execute(),
-      _view.renderNextTetromino(tetrominoViewModel),
+      _view.renderNextTetromino(drawableGrid),
     ]);
   });
 }
