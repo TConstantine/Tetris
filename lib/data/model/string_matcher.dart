@@ -1,6 +1,14 @@
 import 'package:tetris/data/model/tetromino_type.dart';
 
 class StringMatcher {
+  static final StringMatcher _instance = new StringMatcher._internal();
+
+  StringMatcher._internal();
+
+  factory StringMatcher() {
+    return _instance;
+  }
+
   List<String> matchToString(TetrominoType type) {
     switch (type) {
       case TetrominoType.I:

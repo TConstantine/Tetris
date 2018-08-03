@@ -1,22 +1,28 @@
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+import 'package:tetris/data/model/string_matcher.dart';
 import 'package:tetris/data/model/tetromino.dart';
 import 'package:tetris/data/model/tetromino_type.dart';
 
+class StringMatcherMock extends Mock implements StringMatcher {}
+
 void main() {
+  TetrominoType _tetrominoType;
+  StringMatcher _stringMatcher;
+  Tetromino _tetromino;
+
+  setUp(() {
+    _tetrominoType = TetrominoType.T;
+    _stringMatcher = StringMatcherMock();
+    when(_stringMatcher.matchToString(_tetrominoType)).thenReturn(['???', ' ? ']);
+    _tetromino = Tetromino(_tetrominoType, _stringMatcher);
+  });
+
   test('Created tetromino has the correct type', () {
-    final Tetromino tetrominoI = Tetromino.I;
-    expect(tetrominoI.type(), TetrominoType.I);
-    final Tetromino tetrominoJ = Tetromino.J;
-    expect(tetrominoJ.type(), TetrominoType.J);
-    final Tetromino tetrominoL = Tetromino.L;
-    expect(tetrominoL.type(), TetrominoType.L);
-    final Tetromino tetrominoO = Tetromino.O;
-    expect(tetrominoO.type(), TetrominoType.O);
-    final Tetromino tetrominoS = Tetromino.S;
-    expect(tetrominoS.type(), TetrominoType.S);
-    final Tetromino tetrominoT = Tetromino.T;
-    expect(tetrominoT.type(), TetrominoType.T);
-    final Tetromino tetrominoZ = Tetromino.Z;
-    expect(tetrominoZ.type(), TetrominoType.Z);
+    expect(_tetromino.type(), _tetrominoType);
+  });
+
+  test('Created tetromino has the correct string representation', () {
+    verify(_stringMatcher.matchToString(_tetromino.type()));
   });
 }

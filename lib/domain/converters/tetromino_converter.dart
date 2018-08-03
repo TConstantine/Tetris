@@ -13,10 +13,7 @@ class TetrominoConverter {
           viewModelBlocks[row][column] = Colors.transparent;
         }
         else {
-          final String value = tetromino.valueAt(row, column);
-          if (value == 'T') {
-            viewModelBlocks[row][column] = Colors.purple;
-          }
+          viewModelBlocks[row][column] = Colors.purple;
         }
       }
     }

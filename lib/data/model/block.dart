@@ -1,5 +1,5 @@
 class Block {
-  static const String EMPTY = '.';
+  static const String EMPTY = ' ';
   final String _value;
 
   Block(this._value);
