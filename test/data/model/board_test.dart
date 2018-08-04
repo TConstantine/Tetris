@@ -1,8 +1,7 @@
 import 'package:test/test.dart';
 import 'package:tetris/data/model/board.dart';
-import 'package:tetris/data/model/string_matcher.dart';
-import 'package:tetris/data/model/tetromino.dart';
-import 'package:tetris/data/model/tetromino_type.dart';
+
+import '../../util/data_builder.dart';
 
 const int ROWS = 20;
 const int COLUMNS = 10;
@@ -17,17 +16,17 @@ void main() {
   });
 
   test('When a new board is created should be empty', () {
-    expect(_board.toString(), _printEmptyBoard());
+    expect(_board.toString(), DataBuilder.emptyBoard());
   });
 
   test('Given an empty board when a tetromino is added should start falling from top middle', () {
-    _board.add(Tetromino(TetrominoType.T, StringMatcher()));
+    _board.add(DataBuilder.tetromino());
 
     expect(_board.toString(), _printBoardWithTetrominoT());
   });
 
   test('When a tetromino is added to the board should fall one row per move', () {
-    _board.add(Tetromino(TetrominoType.T, StringMatcher()));
+    _board.add(DataBuilder.tetromino());
 
     _board.moveDown();
 
@@ -36,7 +35,7 @@ void main() {
 
   test('Given a tetromino is added to the board when it reaches the bottom should stop falling',
       () {
-    _board.add(Tetromino(TetrominoType.T, StringMatcher()));
+    _board.add(DataBuilder.tetromino());
 
     _moveTetrominoToBottomOf(_board);
 
@@ -46,19 +45,14 @@ void main() {
   test(
       'Given a tetromino is at the bottom when another tetromino is added should stop falling above the previous tetromino',
       () {
-    _board.add(Tetromino(TetrominoType.T, StringMatcher()));
+    _board.add(DataBuilder.tetromino());
     _moveTetrominoToBottomOf(_board);
-    _board.add(Tetromino(TetrominoType.T, StringMatcher()));
+    _board.add(DataBuilder.tetromino());
 
     _moveTetrominoToBottomOf(_board);
 
     expect(_board.toString(), _printBoardWithTwoTetrominosAboveEachOtherAtBottom());
   });
-}
-
-String _printEmptyBoard() {
-  _fillBoardWithEmpty(ROWS);
-  return _stringBuffer.toString();
 }
 
 String _printBoardWithTetrominoT() {

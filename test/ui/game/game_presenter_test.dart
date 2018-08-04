@@ -5,7 +5,8 @@ import 'package:tetris/domain/usecases/get_next_tetromino.dart';
 import 'package:tetris/domain/usecases/start_game.dart';
 import 'package:tetris/ui/game/game_contract.dart';
 import 'package:tetris/ui/game/game_presenter.dart';
-import 'package:tetris/ui/model/drawable_grid.dart';
+
+import '../../util/data_builder.dart';
 
 class GameViewMock extends Mock implements GameContractView {}
 
@@ -36,7 +37,7 @@ void main() {
   });
 
   test('Display board', () {
-    final DrawableGrid drawableGrid = DrawableGrid([]);
+    final drawableGrid = DataBuilder.drawableGrid();
     when(_getBoardUseCase.execute()).thenReturn(drawableGrid);
 
     _presenter.startNewGame();
@@ -48,7 +49,7 @@ void main() {
   });
 
   test('Display next tetromino', () {
-    final DrawableGrid drawableGrid = DrawableGrid([]);
+    final drawableGrid = DataBuilder.drawableGrid();
     when(_getNextTetrominoUseCase.execute()).thenReturn(drawableGrid);
 
     _presenter.startNewGame();

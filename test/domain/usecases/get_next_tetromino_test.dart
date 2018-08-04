@@ -1,12 +1,10 @@
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:tetris/data/model/game.dart';
-import 'package:tetris/data/model/string_matcher.dart';
-import 'package:tetris/data/model/tetromino.dart';
-import 'package:tetris/data/model/tetromino_type.dart';
 import 'package:tetris/domain/converters/tetromino_converter.dart';
 import 'package:tetris/domain/usecases/get_next_tetromino.dart';
-import 'package:tetris/ui/model/drawable_grid.dart';
+
+import '../../util/data_builder.dart';
 
 class GameMock extends Mock implements Game {}
 
@@ -24,10 +22,9 @@ void main() {
   });
 
   test('Get next tetromino', () {
-    final Tetromino tetromino = Tetromino(TetrominoType.T, StringMatcher());
+    final tetromino = DataBuilder.tetromino();
     when(_game.nextTetromino()).thenReturn(tetromino);
-    final DrawableGrid drawableGrid = DrawableGrid([]);
-    when(_converter.convertToViewModel(tetromino)).thenReturn(drawableGrid);
+    when(_converter.convertToViewModel(tetromino)).thenReturn(DataBuilder.drawableGrid());
 
     _useCase.execute();
 

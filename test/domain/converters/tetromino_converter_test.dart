@@ -1,9 +1,8 @@
 import 'package:test/test.dart';
-import 'package:tetris/data/model/string_matcher.dart';
-import 'package:tetris/data/model/tetromino.dart';
-import 'package:tetris/data/model/tetromino_type.dart';
 import 'package:tetris/domain/converters/tetromino_converter.dart';
 import 'package:tetris/ui/model/drawable_grid.dart';
+
+import '../../util/data_builder.dart';
 
 void main() {
   TetrominoConverter _converter;
@@ -13,9 +12,7 @@ void main() {
   });
 
   test('Convert a tetromino model to a tetromino view model', () {
-    final Tetromino tetromino = Tetromino(TetrominoType.T, StringMatcher());
-
-    final DrawableGrid drawableGrid = _converter.convertToViewModel(tetromino);
+    final DrawableGrid drawableGrid = _converter.convertToViewModel(DataBuilder.tetromino());
 
     expect(drawableGrid.rows(), 2);
     expect(drawableGrid.columns(), 3);

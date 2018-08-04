@@ -1,10 +1,10 @@
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-import 'package:tetris/data/model/board.dart';
 import 'package:tetris/data/model/game.dart';
 import 'package:tetris/domain/converters/board_converter.dart';
 import 'package:tetris/domain/usecases/get_board.dart';
-import 'package:tetris/ui/model/drawable_grid.dart';
+
+import '../../util/data_builder.dart';
 
 class GameMock extends Mock implements Game {}
 
@@ -22,13 +22,13 @@ void main() {
   });
 
   test('Get the board', () {
-    final Board board = Board(0, 0);
+    final board = DataBuilder.board();
     when(_game.board()).thenReturn(board);
-    final DrawableGrid drawableGrid = DrawableGrid([]);
+    final drawableGrid = DataBuilder.drawableGrid();
     when(_boardConverter.convertToViewModel(board)).thenReturn(drawableGrid);
 
-    final DrawableGrid actual = _useCase.execute();
+    final actualGrid = _useCase.execute();
 
-    expect(actual, drawableGrid);
+    expect(actualGrid, drawableGrid);
   });
 }
