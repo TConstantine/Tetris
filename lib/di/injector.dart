@@ -1,4 +1,5 @@
 import 'package:tetris/data/model/game.dart';
+import 'package:tetris/data/model/string_matcher.dart';
 import 'package:tetris/domain/converters/board_converter.dart';
 import 'package:tetris/domain/usecases/get_board.dart';
 import 'package:tetris/ui/game/game_renderer.dart';
@@ -28,6 +29,10 @@ class Injector {
 
   GridRenderer gameRenderer() {
     return GridRenderer();
+  }
+
+  StringMatcher stringMatcher() {
+    return StringMatcher();
   }
 
   StartGame _provideStartGameUseCase() {

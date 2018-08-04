@@ -1,7 +1,6 @@
 import 'package:tetris/data/model/board.dart';
-import 'package:tetris/data/model/string_matcher.dart';
 import 'package:tetris/data/model/tetromino.dart';
-import 'package:tetris/data/model/tetromino_type.dart';
+import 'package:tetris/data/model/tetromino_factory.dart';
 
 class Game {
   static final Game _instance = new Game._internal();
@@ -28,7 +27,7 @@ class Game {
     _board = Board(20, 10);
     _hasFalling = false;
     _hasHolding = false;
-    _nextTetromino = Tetromino(TetrominoType.T, StringMatcher());
+    _nextTetromino = TetrominoFactory.tetromino();
     _hasNext = true;
     _level = 0;
     _score = 0;
@@ -39,7 +38,7 @@ class Game {
     _isPaused = false;
     _fallingTetromino = _nextTetromino;
     _hasFalling = true;
-    _nextTetromino = Tetromino(TetrominoType.T, StringMatcher());
+    _nextTetromino = TetrominoFactory.tetromino();
   }
 
   bool isPaused() {
