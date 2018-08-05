@@ -21,7 +21,7 @@ void main() {
     expect(_game.hasNextTetromino(), isTrue);
     expect(_game.level(), 0);
     expect(_game.score(), 0);
-    expect(_game.lines(), 0);
+    expect(_game.completedLines(), 0);
   });
 
   test('Should resume game', () {

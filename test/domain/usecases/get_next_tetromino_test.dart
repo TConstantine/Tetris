@@ -24,10 +24,9 @@ void main() {
   test('Get next tetromino', () {
     final tetromino = DataBuilder.tetromino();
     when(_game.nextTetromino()).thenReturn(tetromino);
-    when(_converter.convertToViewModel(tetromino)).thenReturn(DataBuilder.drawableGrid());
 
     _useCase.execute();
 
-    verifyInOrder([_game.nextTetromino(), _converter.convertToViewModel(tetromino)]);
+    verify(_converter.convertToViewModel(tetromino));
   });
 }

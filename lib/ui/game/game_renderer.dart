@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tetris/ui/model/drawable_grid.dart';
+import 'package:tetris/ui/model/grid_view_model.dart';
 
 class GridRenderer extends CustomPainter {
-  DrawableGrid _grid;
+  GridViewModel _grid;
 
-  void setDrawable(DrawableGrid grid) {
+  void setDrawable(GridViewModel grid) {
     _grid = grid;
   }
 

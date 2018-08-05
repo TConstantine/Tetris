@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tetris/data/model/board.dart';
-import 'package:tetris/ui/model/drawable_grid.dart';
+import 'package:tetris/ui/model/grid_view_model.dart';
 
 class BoardConverter {
-  DrawableGrid convertToViewModel(Board board) {
+  GridViewModel convertToViewModel(Board board) {
     final List<List<Color>> blocks = List<List<Color>>(board.rows());
     for (int row = 0; row < board.rows(); row++) {
       blocks[row] = List<Color>(board.columns());
@@ -17,6 +17,6 @@ class BoardConverter {
         }
       }
     }
-    return DrawableGrid(blocks);
+    return GridViewModel(blocks);
   }
 }

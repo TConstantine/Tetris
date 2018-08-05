@@ -1,9 +1,10 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-class DrawableGrid {
+class GridViewModel {
   final List<List<Color>> _cells;
 
-  DrawableGrid(this._cells);
+  GridViewModel(this._cells);
 
   int rows() {
     return _cells.length;
@@ -20,4 +21,11 @@ class DrawableGrid {
   Color colorAt(int row, int column) {
     return _cells[row][column];
   }
+
+  @override
+  bool operator ==(other) =>
+      other is GridViewModel && DeepCollectionEquality().equals(other._cells, _cells);
+
+  @override
+  int get hashCode => super.hashCode;
 }

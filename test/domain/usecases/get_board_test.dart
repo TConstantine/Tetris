@@ -24,11 +24,9 @@ void main() {
   test('Get the board', () {
     final board = DataBuilder.board();
     when(_game.board()).thenReturn(board);
-    final drawableGrid = DataBuilder.drawableGrid();
-    when(_boardConverter.convertToViewModel(board)).thenReturn(drawableGrid);
 
-    final actualGrid = _useCase.execute();
+    _useCase.execute();
 
-    expect(actualGrid, drawableGrid);
+    verify(_boardConverter.convertToViewModel(board));
   });
 }

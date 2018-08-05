@@ -3,11 +3,11 @@ import 'package:tetris/data/model/board.dart';
 import 'package:tetris/data/model/string_matcher.dart';
 import 'package:tetris/data/model/tetromino.dart';
 import 'package:tetris/data/model/tetromino_type.dart';
-import 'package:tetris/ui/model/drawable_grid.dart';
+import 'package:tetris/ui/model/grid_view_model.dart';
 
 class DataBuilder {
-  static DrawableGrid drawableGrid() {
-    return DrawableGrid([
+  static GridViewModel drawableGrid() {
+    return GridViewModel([
       [Colors.purple, Colors.transparent],
       [Colors.transparent, Colors.purple],
     ]);

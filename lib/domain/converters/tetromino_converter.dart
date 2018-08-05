@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tetris/data/model/tetromino.dart';
-import 'package:tetris/ui/model/drawable_grid.dart';
+import 'package:tetris/ui/model/grid_view_model.dart';
 
 class TetrominoConverter {
-  DrawableGrid convertToViewModel(Tetromino tetromino) {
+  GridViewModel convertToViewModel(Tetromino tetromino) {
     final List<List<Color>> viewModelBlocks = List<List<Color>>(tetromino.rows());
     for (int row = 0; row < tetromino.rows(); row++) {
       viewModelBlocks[row] = List<Color>(tetromino.columns());
@@ -17,6 +17,6 @@ class TetrominoConverter {
         }
       }
     }
-    return DrawableGrid(viewModelBlocks);
+    return GridViewModel(viewModelBlocks);
   }
 }

@@ -77,7 +77,7 @@ class Game {
     return _score;
   }
 
-  int lines() {
+  int completedLines() {
     return _lines;
   }
 

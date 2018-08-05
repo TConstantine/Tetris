@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tetris/ui/game/game_renderer.dart';
 import 'package:tetris/di/injector.dart';
 import 'package:tetris/ui/game/game_contract.dart';
-import 'package:tetris/ui/model/drawable_grid.dart';
+import 'package:tetris/ui/model/grid_view_model.dart';
 
 class GameScreen extends StatefulWidget {
   @override
@@ -12,6 +12,9 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> implements GameContractView {
   GameContractPresenter _presenter;
   GridRenderer _gameRenderer;
+  int _level = 0;
+  int _score = 0;
+  int _completedLines = 0;
 
   @override
   void initState() {
@@ -79,9 +82,9 @@ class _GameScreenState extends State<GameScreen> implements GameContractView {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Level: 0'),
-          Text('Score: 0'),
-          Text('Lines: 0'),
+          Text('Level: $_level'),
+          Text('Score: $_score'),
+          Text('Lines: $_completedLines'),
         ],
       ),
     );
@@ -153,16 +156,37 @@ class _GameScreenState extends State<GameScreen> implements GameContractView {
   }
 
   @override
-  void renderBoard(DrawableGrid boardViewModel) {
+  void displayBoard(GridViewModel boardViewModel) {
     setState(() {
       _gameRenderer.setDrawable(boardViewModel);
     });
   }
 
   @override
-  void renderNextTetromino(DrawableGrid tetrominoViewModel) {
+  void displayCompletedLines(int completedLines) {
+    setState(() {
+      _completedLines = completedLines;
+    });
+  }
+
+  @override
+  void displayLevel(int level) {
+    setState(() {
+      _level = level;
+    });
+  }
+
+  @override
+  void displayNextTetromino(GridViewModel tetrominoViewModel) {
     setState(() {
       _gameRenderer.setDrawable(tetrominoViewModel);
+    });
+  }
+
+  @override
+  void displayScore(int score) {
+    setState(() {
+      _score = score;
     });
   }
 }

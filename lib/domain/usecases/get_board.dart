@@ -1,6 +1,6 @@
 import 'package:tetris/data/model/game.dart';
 import 'package:tetris/domain/converters/board_converter.dart';
-import 'package:tetris/ui/model/drawable_grid.dart';
+import 'package:tetris/ui/model/grid_view_model.dart';
 
 class GetBoard {
   final Game _game;
@@ -8,7 +8,7 @@ class GetBoard {
 
   GetBoard(this._game, this._boardConverter);
 
-  DrawableGrid execute() {
+  GridViewModel execute() {
     return _boardConverter.convertToViewModel(_game.board());
   }
 }
